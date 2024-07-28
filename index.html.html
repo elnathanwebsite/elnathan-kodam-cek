@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Kodam by El Nathan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+        }
+
+        .input-group button {
+            padding: 40px 50px;
+            background-color: #1b1ecc;
+            color: #FFF;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .input-group button:hover {
+            background-color: #218838;
+        }
+
+        .result-container {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e9ecef;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        .result-container img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        .riddle-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+        }
+
+        .riddle-container p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="image.png" alt="Banner Image"
+            style="width:100%; height:auto; margin-bottom:20px;">
+        <h1>Cek Kodam by El Nathan</h1>
+        <h2>Cek Kodam Klean Bree</h2>
+        <div class="input-group">
+            <label for="name">Nama lu bree:</label>
+            <input type="text" id="name" placeholder="Masukkan nama Anda">
+        </div>
+        <div class="input-group">
+            <button onclick="cekKodam()">Cek Kodam</button>
+        </div>
+        <div class="result-container" id="resultContainer">
+            <h2>Oh Ini Kodam lu</h2>
+            <p id="result"></p>
+            <img id="kodamImage" src="" alt="Kodam Image">
+        </div>
+
+        <div class="riddle-container">
+            <h2>Jawab Teka-Teki Ini</h2>
+            <p>Siapa yang Buat Website Ini</p>
+            <div class="input-group">
+                <input type="text" id="riddleAnswer" placeholder="Masukkan jawaban Anda">
+            </div>
+            <div class="input-group">
+                <button onclick="checkRiddle()">Jawab</button>
+            </div>
+            <div class="result-container" id="riddleResultContainer">
+                <p id="riddleResult"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function cekKodam() {
+            var name = document.getElementById('name').value.trim();
+            if (name === '') {
+                alert('Nama tidak boleh kosong!');
+                return;
+            }
+            var kodam = getKodam(name);
+            document.getElementById('result').innerText = kodam.text;
+            document.getElementById('kodamImage').src = kodam.image;
+            document.getElementById('resultContainer').style.display = 'block';
+        }
+
+        function getKodam(name) {
+            var kodamList = [
+                { text: 'Pocong Gosong', image: 'https://th.bing.com/th/id/OIP.1OgZ6rurvaPZ7dA24XTntQHaFj?rs=1&pid=ImgDetMain' },
+                { text: 'Kuntilanak Cantik', image: 'https://1.bp.blogspot.com/-lvsqjWeFDU4/YBei1JGIXgI/AAAAAAAAAOM/6RpICK1bRkwcXEbeO0kXre9prLB2upXAACLcBGAsYHQ/s1024/kuntilanak%2Bputih.jpg' },
+                { text: 'Sugiono', image: 'https://yt3.ggpht.com/a/AGF-l7874I-6ztYhe_ZtsW0D56f48AICuixsnnygGw=s900-c-k-c0xffffffff-no-rj-mo' },
+                { text: 'Kucing Oren', image: 'https://th.bing.com/th/id/OIP.Tc3teU4_s_7APPYKmQP8UwHaJQ?rs=1&pid=ImgDetMain' },
+                { text: 'Bulldog', image: 'https://www.thesprucepets.com/thmb/jCoiJe9nv3gjzbkToeLAfusn5II=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/bulldog-4584344-05-b05974de04be496aac87ff43f104b428.jpg' },
+                { text: 'Kosong', image: 'https://via.placeholder.com/150' }
+            ];
+            var index = name.length % kodamList.length;
+            return kodamList[index];
+        }
+
+        function checkRiddle() {
+            var answer = document.getElementById('riddleAnswer').value.trim().toLowerCase();
+            var riddleResultContainer = document.getElementById('riddleResultContainer');
+            var riddleResult = document.getElementById('riddleResult');
+
+            if (answer === 'arifan') {
+                riddleResult.innerText = 'Nays Gg Bro.';
+                riddleResultContainer.style.display = 'block';
+                riddleResult.style.color = 'green';
+            } else {
+                riddleResult.innerText = 'SALAH GOBLOK.';
+                riddleResultContainer.style.display = 'block';
+                riddleResult.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+
+</html>
